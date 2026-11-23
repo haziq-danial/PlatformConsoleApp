@@ -75,6 +75,10 @@ try
     var platforms = await apiService
         .GetPlatformWellActualAsync(token);
 
+    // for testing purposes
+    //var platforms = await apiService
+    //    .GetPlatformWellDummyAsync(token);
+
     Console.WriteLine($"Retrieved {platforms.Count} platforms.");
 
     // Step 3: Synchronize data
