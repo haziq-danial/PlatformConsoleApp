@@ -8,7 +8,8 @@ public class Well
     public string UniqueName { get; set; } = string.Empty;
     public decimal? Latitude { get; set; }
     public decimal? Longitude { get; set; }
-    public DateTime? LastUpdate { get; set; }
+    public DateTime? CreatedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
 
     // Navigation property
     public Platform Platform { get; set; } = null!;

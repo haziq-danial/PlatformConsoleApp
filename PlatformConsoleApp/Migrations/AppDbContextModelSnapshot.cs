@@ -15,7 +15,7 @@ partial class AppDbContextModelSnapshot : ModelSnapshot
     // If you encounter a merge conflict in the line below, it means you need to
     // discard one of the migration branches and recreate its migrations on top of
     // the other branch. See https://aka.ms/efcore-docs-migrations-conflicts for more info.
-    public override string LastMigrationId => "20261123020157_MakeLocationAndUpdateFieldsNullable";
+    public override string LastMigrationId => "20261123023524_ReplaceLastUpdateWithCreatedAndUpdatedAt";
 
     protected override void BuildModel(ModelBuilder modelBuilder)
     {
@@ -30,7 +30,7 @@ partial class AppDbContextModelSnapshot : ModelSnapshot
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int");
 
-                b.Property<DateTime?>("LastUpdate")
+                b.Property<DateTime?>("CreatedAt")
                     .HasColumnType("datetime(3)");
 
                 b.Property<decimal?>("Latitude")
@@ -45,6 +45,9 @@ partial class AppDbContextModelSnapshot : ModelSnapshot
                     .IsRequired()
                     .HasColumnType("longtext");
 
+                b.Property<DateTime?>("UpdatedAt")
+                    .HasColumnType("datetime(3)");
+
                 b.HasKey("Id");
 
                 b.ToTable("platforms");
@@ -56,7 +59,7 @@ partial class AppDbContextModelSnapshot : ModelSnapshot
                     .ValueGeneratedOnAdd()
                     .HasColumnType("int");
 
-                b.Property<DateTime?>("LastUpdate")
+                b.Property<DateTime?>("CreatedAt")
                     .HasColumnType("datetime(3)");
 
                 b.Property<decimal?>("Latitude")
@@ -73,6 +76,9 @@ partial class AppDbContextModelSnapshot : ModelSnapshot
                 b.Property<string>("UniqueName")
                     .IsRequired()
                     .HasColumnType("longtext");
+
+                b.Property<DateTime?>("UpdatedAt")
+                    .HasColumnType("datetime(3)");
 
                 b.HasKey("Id");
 

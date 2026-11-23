@@ -6,7 +6,8 @@ public class Platform
     public string UniqueName { get; set; } = string.Empty;
     public decimal? Latitude { get; set; }
     public decimal? Longitude { get; set; }
-    public DateTime? LastUpdate { get; set; }
+    public DateTime? CreatedAt { get; set; }
+    public DateTime? UpdatedAt { get; set; }
 
     // Navigation property
     public ICollection<Well> Wells { get; set; } = new List<Well>();

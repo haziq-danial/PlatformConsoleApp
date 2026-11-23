@@ -21,8 +21,8 @@ The application is composed through the .NET Generic Host and dependency injecti
 - `PlatformApiService` reads the configured actual or dummy data endpoint, adds the JWT as a Bearer token, and deserializes the response into platform DTOs.
 - `PlatformSyncService` finds or creates each platform and its wells, updates their fields, and saves the changes with EF Core.
 - `AppDbContext` maps the `Platform` and `Well` entities to the `platforms` and `wells` tables.
-- `DTOs` represent API request and response data; `Models` represent persisted database records. API latitude, longitude, and last-update fields, and their matching model fields, are nullable.
-- `Migrations` tracks database schema changes. The migration `MakeLocationAndUpdateFieldsNullable` changes platform and well latitude, longitude, and `LastUpdate` columns to allow `NULL`.
+- `DTOs` represent API request and response data; `Models` represent persisted database records. Platform and well records include `id`, `uniqueName`, nullable `latitude` and `longitude`, nullable `createdAt` and `updatedAt`, and (for platforms) a `well` collection.
+- `Migrations` tracks database schema changes. The migration `MakeLocationAndUpdateFieldsNullable` allows missing coordinates and timestamps; `ReplaceLastUpdateWithCreatedAndUpdatedAt` renames the old timestamp column to `UpdatedAt` and adds `CreatedAt`.
 
 ## Configuration
 
@@ -60,7 +60,7 @@ Migrations are not automatically applied by the application. Apply them to the s
 dotnet ef database update --project .\PlatformConsoleApp.csproj
 ```
 
-The nullable-field migration must be applied for missing API location or timestamp values to be stored as SQL `NULL`. If MySQL reports that `LastUpdate` cannot be null, verify that the migration was applied to the exact database used by the running application and that the column allows `NULL` in both `platforms` and `wells`.
+Apply all pending migrations for the configured database before running the app. The timestamp migration preserves the former `LastUpdate` values by renaming that column to `UpdatedAt`; newly introduced `CreatedAt` values are nullable. Verify that migrations were applied to the exact database used by the running application.
 
 ## Error handling
 

@@ -35,7 +35,8 @@ public class PlatformSyncService
         platform.UniqueName = dto.UniqueName;
         platform.Latitude = dto.Latitude;
         platform.Longitude = dto.Longitude;
-        platform.LastUpdate = dto.LastUpdate;
+        platform.CreatedAt = dto.CreatedAt;
+        platform.UpdatedAt = dto.UpdatedAt;
 
         // Insert or update wells
         foreach (var wellDto in dto.Well ?? new List<WellDto>())
@@ -57,7 +58,8 @@ public class PlatformSyncService
             well.UniqueName = wellDto.UniqueName;
             well.Latitude = wellDto.Latitude;
             well.Longitude = wellDto.Longitude;
-            well.LastUpdate = wellDto.LastUpdate;
+            well.CreatedAt = wellDto.CreatedAt;
+            well.UpdatedAt = wellDto.UpdatedAt;
         }
 
         await _db.SaveChangesAsync();

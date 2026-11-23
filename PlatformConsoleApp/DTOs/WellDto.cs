@@ -13,5 +13,7 @@ public class WellDto
 
     public decimal? Longitude { get; set; }
 
-    public DateTime? LastUpdate { get; set; }
+    public DateTime? CreatedAt { get; set; }
+
+    public DateTime? UpdatedAt { get; set; }
 }

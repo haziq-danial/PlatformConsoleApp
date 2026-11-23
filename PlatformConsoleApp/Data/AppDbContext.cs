@@ -29,7 +29,10 @@ public class AppDbContext : DbContext
             entity.Property(p => p.Longitude)
                 .HasPrecision(18, 6);
 
-            entity.Property(p => p.LastUpdate)
+            entity.Property(p => p.CreatedAt)
+                .HasColumnType("datetime(3)");
+
+            entity.Property(p => p.UpdatedAt)
                 .HasColumnType("datetime(3)");
         });
 
@@ -45,7 +48,10 @@ public class AppDbContext : DbContext
             entity.Property(w => w.Longitude)
                 .HasPrecision(18, 6);
 
-            entity.Property(w => w.LastUpdate)
+            entity.Property(w => w.CreatedAt)
+                .HasColumnType("datetime(3)");
+
+            entity.Property(w => w.UpdatedAt)
                 .HasColumnType("datetime(3)");
 
             entity.HasOne(w => w.Platform)
